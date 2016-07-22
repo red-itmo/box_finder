@@ -1,0 +1,79 @@
+# box's params
+define block model
+(
+  size [0.5 0.3 0.3]
+  gui_nose 0
+)
+
+
+# lidar's params
+define topurg ranger
+(
+    sensor
+    (
+        range [ 0.0  5.0 ]
+        fov 150
+        samples 300
+    )
+    # interval_sim 10
+    # generic model properties
+    color "black"
+    size [ 0.050 0.050 0.100 ]
+)
+
+
+# robot's params
+define erratic position
+(
+  size [0.530 0.360 0.150]
+  origin [0.000 0.000 0.000 0.000]
+  gui_nose 1
+  drive "omni"
+  topurg(pose [ 0.029 0.000 0.050 0.000 ])
+)
+
+
+# environment's params
+define floorplan model
+(
+  # sombre, sensible, artistic
+  color "gray30"
+
+  boundary 0
+
+  gui_nose 0
+  gui_grid 0
+
+  gui_outline 0
+  # gripper_return 0
+  # fiducial_return 0
+  laser_return 1
+)
+# load an environment bitmap
+floorplan
+(
+  name "willow"
+  bitmap "test.pgm"
+  size [10.000 14.000 0.500]
+  pose [ 0.000 0.000 0.000 0.000 ]
+)
+
+
+# set the resolution of the underlying raytrace model in meters
+resolution 0.02
+
+# simulation timestep in milliseconds
+interval_sim 50
+
+# window's params
+window
+(
+  size [ 993 665 ]
+
+  rotate [ 0.000 0.000 ]
+  scale 30.913
+)
+
+# throw in a robot and box
+erratic( pose [ 0.000 0.000 0.000 0.000 ] color "blue")
+block( pose [ -1.2 5.0 0.0 30.000 ] color "red")

@@ -14,8 +14,8 @@
     <node name="move_to_table" pkg="box_finder" type="move_to_table" output="screen" required="true">
         <param name="distance_to_table" value="0.8"/>
         <param name="angle_with_table" value="1.57"/>
-        <param name="table_width" value="0.34"/>
-        <param name="table_length" value="0.51"/>
+        <param name="table_width" value="0.5"/>
+        <param name="table_length" value="0.3"/>
         <param name="max_size_error" value="0.1"/>
     </node>
 
