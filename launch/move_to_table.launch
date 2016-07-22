@@ -1,5 +1,7 @@
 <launch>
 
+    <include file="$(find robotino_node)/launch/robotino_node.launch"/>
+
     <rosparam command="load" file="$(find box_finder)/config/init_pose.yaml" ns="amcl"/>
 
     <node name="map_server" pkg="map_server" type="map_server" args="$(find box_finder)/map/auto_result.yaml" />

@@ -1,5 +1,7 @@
 <launch>
 
+    <include file="$(find robotino_node)/launch/robotino_node.launch"/>
+
     <include file="$(find box_finder)/launch/gmapping.launch" />
 
     <include file="$(find box_finder)/launch/move_base.launch"/>
