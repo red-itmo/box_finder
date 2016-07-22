@@ -1,0 +1,27 @@
+<launch>
+
+    <include file="$(find box_finder)/launch/gmapping.launch" />
+
+    <include file="$(find box_finder)/launch/move_base.launch"/>
+    <rosparam file="$(find box_finder)/config/base_local_planner_params.yaml" command="load" ns="move_base_node"/>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find box_finder)/rviz/first_stage.rviz" />
+
+    <node name="automapping" pkg="box_finder" type="automapping" output="screen" required="true">
+        <param name="safe_distance" value="0.5"/>
+        <param name="tolerance" value="0.1"/>
+        <param name="map_name" value="$(find box_finder)/map/auto_result"/>
+        <param name="pose_params_file_name" value="$(find box_finder)/config/init_pose.yaml"/>
+        <param name="rotational_speed" value="0.5"/>
+    </node>
+
+    <node name="exploration_server" pkg="box_finder" type="exploration_server" output="screen">
+        <param name="region_size" value="11" />
+        <param name="initial_radius" value="1.5" />
+        <param name="white_perc" value="35" />
+        <param name="grey_perc" value="45" />
+        <param name="black_perc" value="2" />
+        <param name="delta" value="0.3" />
+    </node>
+
+</launch>

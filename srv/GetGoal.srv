@@ -1,0 +1,4 @@
+geometry_msgs/Point robot_pose
+geometry_msgs/Point[] excluded_goals
+---
+geometry_msgs/Point goal

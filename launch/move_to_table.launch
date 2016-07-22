@@ -1,0 +1,22 @@
+<launch>
+
+    <rosparam command="load" file="$(find box_finder)/config/init_pose.yaml" ns="amcl"/>
+
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find box_finder)/map/auto_result.yaml" />
+
+    <include file="$(find box_finder)/launch/amcl.launch" />
+
+    <include file="$(find box_finder)/launch/move_base.launch"/>
+    <rosparam file="$(find box_finder)/config/blpp_more_tolerance.yaml" command="load" ns="move_base_node"/>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find box_finder)/rviz/second_stage.rviz" />
+
+    <node name="move_to_table" pkg="box_finder" type="move_to_table" output="screen" required="true">
+        <param name="distance_to_table" value="0.8"/>
+        <param name="angle_with_table" value="1.57"/>
+        <param name="table_width" value="0.34"/>
+        <param name="table_length" value="0.51"/>
+        <param name="max_size_error" value="0.1"/>
+    </node>
+
+</launch>
